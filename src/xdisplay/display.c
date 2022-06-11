@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 20:19:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 23:59:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ int	xplayer_turn(t_c4 **c4, t_board *board)
 	{
 		display_board(board);
 		xdisplay_error((*c4)->err_str);
-		free((*c4)->err_str);
 		display_info("Please press SPACE on the column you want to play");
 		if (board->lengths[(*c4)->move] == board->height)
+		{
+			free((*c4)->err_str);
 			(*c4)->err_str = ft_strdup("Column filled.");
-		else if ((*c4)->err_str)
-			return (free((*c4)->err_str), (*c4)->move);
+			(*c4)->do_display = 1;
+		}
 		else
 			return ((*c4)->move);
 		(*c4)->move = -1;
@@ -54,6 +55,7 @@ int	x_game_loop(t_c4 **c4)
 		if (move != -1)
 		{
 			do_move(c4, board, (*c4)->is_player_turn, move);
+			(*c4)->move = -1;
 			(*c4)->err_str = NULL;
 		}
 	}
