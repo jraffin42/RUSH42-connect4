@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xdisplay.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 08:47:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:54:00 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "../minilibx-linux/mlx.h"
+# include "mlx.h"
 
 # include "libft.h"
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 08:48:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:00:45 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_usage(void)
 	ft_putstr_fd("Error\nusage: ./connect4 n_line n_column [--display]\n", 2);
 }
 
-int	main(int ac, char **av)
+/*int	main(int ac, char **av)
 {
 	t_c4	*c4;
 
@@ -39,4 +39,4 @@ int	main(int ac, char **av)
 	mlx_loop(c4->mlx);
 	ft_close(&c4, 'W');
 	return (EXIT_SUCCESS);
-}
+}*/
