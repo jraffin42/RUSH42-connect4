@@ -6,70 +6,83 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:44:50 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 15:45:49 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/11 17:43:59 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <math.h>
 #include "libft.h"
 #include "core.h"
 #include "display.h"
 
-#define BT_MAX_DEPTH	50
+#define BT_MAX_DEPTH	5
 
-static int	backtracking(t_board *board, int is_player_turn, int depth)
+static double	backtracking(t_board *board, int is_player_turn, int depth)
 {
-	int					i;
-	int					wins;
+	int		i;
+	double	score;
 
 	if (depth >= BT_MAX_DEPTH)
 		return (0);
-	wins = 0;
+	score = 0;
 	i = 0;
 	while (i < board->width)
 	{
 		if (board->lengths[i] < board->height)
 		{
-			if (is_player_turn)
-				board->map[i][board->lengths[i]++] = board->token[1];
-			else
-				board->map[i][board->lengths[i]++] = board->token[0];
-			if (!is_player_turn && is_won(board, i))
-				++wins;
-			else
-				wins += backtracking(board, !is_player_turn, depth + 1);
+			board->map[i][board->lengths[i]++] = board->token[is_player_turn];
+			--board->left;
+			if (is_won(board, i))
+			{
+				if (is_player_turn)
+					score -= board->left;
+				else
+					score += board->left;
+			}
+			else if (board->left)
+				score += backtracking(board, !is_player_turn, depth + 1);
 			board->map[i][--board->lengths[i]] = 0;
+			++board->left;
 		}
 		++i;
 	}
-	return (wins);
+	return (score);
 }
 
 int	ai_turn(t_board *board)
 {
-	int	i;
-	int	wins;
-	int	max_wins;
-	int	best_move;
+	int		i;
+	int		m;
+	double	score;
+	double	max_score;
+	int		best_move;
 
-	max_wins = 0;
+	max_score = -INFINITY;
 	best_move = -1;
-	i = 0;
-	while (i < board->width)
+	m = 0;
+	i = board->width / 2;
+	while (i >= 0 && i < board->width)
 	{
 		if (board->lengths[i] < board->height)
 		{
 			board->map[i][board->lengths[i]++] = board->token[0];
-			wins = backtracking(board, 1, 0);
-			if (wins > max_wins)
+			score = backtracking(board, 1, 0);
+			printf("%d %le\n", i, score);
+			if (score > max_score)
 			{
-				max_wins = wins;
+				max_score = score;
 				best_move = i;
 			}
 			board->map[i][--board->lengths[i]] = 0;
 		}
-		++i;
+		++m;
+		if (m & 1)
+			i -= m;
+		else
+			i += m;
 	}
+	printf("%d %le\n", best_move, max_score);
+	free(ft_gnl(0));
 	return (best_move);
 }
-

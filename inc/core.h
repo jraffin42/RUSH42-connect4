@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 21:07:35 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 15:12:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 16:34:29 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef struct s_board
 	int		height;
 	char	**map;
 	int		*lengths;
-	int		fill;
-	int		size;
+	int		left;
 	char	token[2];
 }	t_board;
 
