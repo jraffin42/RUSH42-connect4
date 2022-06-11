@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 19:54:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:04:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	do_move(t_c4 **c4, t_board *board, int player, int move)
 	if (is_won(board, move))
 	{
 		if (player)
-			return (end_game(c4, 'L'), 0);
-		return (end_game(c4, 'L'), 0);
+			return (end_game(c4, 'L'));
+		return (end_game(c4, 'L'));
 	}
 	(*c4)->is_player_turn = !(*c4)->is_player_turn;
 	(*c4)->do_display = 1;
