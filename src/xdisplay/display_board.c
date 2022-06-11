@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_board.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:49:10 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 11:53:27 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/11 12:15:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	display_board(t_board *board)
 		x = 0;
 		while (x < board->width)
 		{
-			if (board->map[x][y] == PLAYER_CHAR)
-				write(1, "\e[1;43m[", 8);
-			else if (board->map[x][y] == AI_CHAR)
+			if (board->map[x][y] == RED_CHAR)
 				write(1, "\e[1;41m[", 8);
+			else if (board->map[x][y] == YEL_CHAR)
+				write(1, "\e[1;43m[", 8);
 			else
 				write(1, "\e[0m", 4);
 
