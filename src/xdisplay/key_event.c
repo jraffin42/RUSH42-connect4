@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 20:12:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 00:51:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xdisplay.h"
+#include "display.h"
 
 void	end_game(t_c4 **c4, char type)
 {
+	display_board((*c4)->board);
 	mlx_loop_end((*c4)->mlx);
 	ft_close(c4, type);
 }
@@ -40,7 +42,7 @@ void	do_move(t_c4 **c4, t_board *board, int player, int move)
 	if (is_won(board, move))
 	{
 		if (player)
-			return (end_game(c4, 'L'));
+			return (end_game(c4, 'W'));
 		return (end_game(c4, 'L'));
 	}
 	(*c4)->is_player_turn = !(*c4)->is_player_turn;

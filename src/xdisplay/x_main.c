@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:02:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 00:11:09 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 00:36:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char **argv)
 	//	write(1, "\x1B[2J\x1B[H", 7);
 	if (argc == 4 && xdisplay(&board))
 		write(1, "\x1B[2J\x1B[H", 7);
-	free_board(&board);
+	while (1) {}
+ 	free_board(&board);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ai_turn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:44:50 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 19:33:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 00:47:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,24 @@
 #include "display.h"
 
 #define BT_MAX_DEPTH	5
+
+static int	can_win(t_board *board)
+{
+	int	i;
+	int	w;
+
+	i = 0;
+	while (i < board->width)
+	{
+		board->map[i][board->lengths[i]++] = board->token[0];
+		w = is_won(board, i);
+		board->map[i][--board->lengths[i]] = NUL_CHAR;
+		if (w)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
 
 static double	backtracking(t_board *board, int is_player_turn, int depth)
 {
@@ -60,6 +78,9 @@ int	ai_turn(t_board *board)
 
 	max_score = -INFINITY;
 	best_move = -1;
+	m = can_win(board);
+	if (m != -1)
+		return (m);
 	m = 0;
 	i = board->width / 2;
 	while (i >= 0 && i < board->width)

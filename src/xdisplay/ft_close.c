@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:39:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 00:10:43 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 00:38:40 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,6 @@ static int	ft_close_img(t_c4 **c4)
 	return (0);
 }
 
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-}
-
 void	ft_close(t_c4 **c4, char type)
 {
 	ft_close_img(c4);
@@ -72,4 +60,5 @@ void	ft_close(t_c4 **c4, char type)
 		ft_putstr_fd(COLOR_RED "Error\n" COLOR_RED, 1);
 	free_struct(NULL, (*c4)->mlx, 'P');
 	free_struct(NULL, (*c4), 'P');
+	exit(EXIT_SUCCESS);
 }
