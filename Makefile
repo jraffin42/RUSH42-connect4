@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/11 16:06:50 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/06/11 19:35:09 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
 COMMONSRCS			:=	core/board.c					\
-						core/turns.c					\
+						core/ai_turn.c					\
+						core/player_turn.c				\
 						core/low_ai.c					\
 
 NOBONUSSRCS			:=	core/main.c						\

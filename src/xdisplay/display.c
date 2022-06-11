@@ -6,21 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 19:23:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:56:43 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xdisplay.h"
 #include "display.h"
 #include "core.h"
-
-void	do_error(char *s)
-{
-	if (s)
-		display_error(s);
-	else
-		display_error("");
-}
 
 int	xplayer_turn(t_c4 **c4, t_board *board)
 {
@@ -47,12 +39,6 @@ int	xplayer_turn(t_c4 **c4, t_board *board)
 	return (-1);
 }
 
-void	end_game(t_c4 **c4, char type)
-{
-	mlx_loop_end((*c4)->mlx);
-	ft_close(c4, type);
-}
-
 int	x_game_loop(t_c4 **c4)
 {
 	int		move;
@@ -68,19 +54,14 @@ int	x_game_loop(t_c4 **c4)
 		{
 			do_move(c4, board, (*c4)->is_player_turn, move);
 			(*c4)->err_str = NULL;
-			(*c4)->move = -1;
-			if (is_won(board, move))
-				return (end_game(c4, 'W'), 0);
 		}
 	}
 	else
 	{
 		display_board(board);
-		display_info("IA is choosing");
+		display_info("IA is choosing...");
 		move = ai_turn(board);
 		do_move(c4, board, (*c4)->is_player_turn, move);
-		if (is_won(board, move))
-			return (end_game(c4, 'L'), 0);
 	}
 	return (0);
 }

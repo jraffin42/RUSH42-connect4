@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:44:50 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 18:50:31 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:33:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ai_turn(t_board *board)
 				max_score = score;
 				best_move = i;
 			}
-			board->map[i][--board->lengths[i]] = NUL_CHAR;
+			board->map[i][--board->lengths[i]] = 0;
 		}
 		++m;
 		if (m & 1)
@@ -85,4 +85,3 @@ int	ai_turn(t_board *board)
 	printf("%d %le\n", best_move, max_score);
 	return (best_move);
 }
-

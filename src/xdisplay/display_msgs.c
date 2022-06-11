@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_msgs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:50:15 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 02:55:25 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/11 19:50:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ void	display_info(char *message)
 {
 	write(1, message, ft_strlen(message));
 	write(1, "\n", 1);
+}
+
+void	xdisplay_error(char *s)
+{
+	if (s)
+		display_error(s);
+	else
+		display_error("");
 }
 
 void	display_error(char *error)

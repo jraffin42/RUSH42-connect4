@@ -6,30 +6,45 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 19:27:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:54:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xdisplay.h"
 
-int	do_move(t_c4 **c4, t_board *board, int player, int move)
+void	end_game(t_c4 **c4, char type)
+{
+	mlx_loop_end((*c4)->mlx);
+	ft_close(c4, type);
+}
+
+void	do_move(t_c4 **c4, t_board *board, int player, int move)
 {
 	int	y;
 
 	y = board->height - board->lengths[move];
 	board->map[move][board->lengths[move]++] = board->token[player];
 	--board->left;
-	if ((*c4)->p_color == RED_CHAR)
+	if (player && (*c4)->p_color == RED_CHAR)
 		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->red,
-			(*c4)->move	* WIDTH, y * HEIGHT);
-	else
+			move * WIDTH, y * HEIGHT);
+	else if (player)
 		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->yellow,
-			(*c4)->move * WIDTH, y * HEIGHT);
-	mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->bg_top,
-			(*c4)->move * WIDTH, 0 * HEIGHT);
+			move * WIDTH, y * HEIGHT);
+	else if (!player && (*c4)->p_color == RED_CHAR)
+		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->yellow,
+			move * WIDTH, y * HEIGHT);
+	else if (!player)
+		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->red,
+			move * WIDTH, y * HEIGHT);
+	if (is_won(board, move))
+	{
+		if (player)
+			return (end_game(c4, 'L'), 0);
+		return (end_game(c4, 'L'), 0);
+	}
 	(*c4)->is_player_turn = !(*c4)->is_player_turn;
 	(*c4)->do_display = 1;
-	return (0);
 }
 
 int	move_p(t_c4 **c4, int y)
@@ -49,7 +64,6 @@ int	move_p(t_c4 **c4, int y)
 	(*c4)->p_pos = y;
 	return (1);
 }
-
 
 int	e_key_down(int keycode, t_c4 **c4)
 {

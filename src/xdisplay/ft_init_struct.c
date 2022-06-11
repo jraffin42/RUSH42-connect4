@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 23:19:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 18:36:23 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:57:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,10 @@
 static int	ft_init1(t_c4 **c4)
 {
 	(*c4)->x = (*c4)->board->height + 1;
-	(*c4)->y =(*c4)->board->width;
-	printf("height : %i\n", (*c4)->x);
-	printf("Width : %i\n", (*c4)->y);
+	(*c4)->y = (*c4)->board->width;
 	(*c4)->width = WIDTH;
 	(*c4)->height = HEIGHT;
 	(*c4)->p_color = (*c4)->board->token[1];
-	printf("color : %c\n", (*c4)->p_color);
 	(*c4)->p_pos = 0;
 	(*c4)->move = -1;
 	(*c4)->err_str = NULL;
