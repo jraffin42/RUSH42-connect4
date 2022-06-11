@@ -3,5 +3,9 @@ debugobj/
 .vscode/*
 !.vscode/tasks.json
 !.vscode/launch.json
-connect4
-connect4.debug
+libft/libft.a*
+mlx/obj
+mlx/libmlx*
+mlx/test/*.o
+mlx/test/mlx-test
+connect4*

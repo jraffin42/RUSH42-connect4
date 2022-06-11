@@ -6,7 +6,7 @@
 #    By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/11 12:00:18 by jraffin          ###   ########.fr        #
+#    Updated: 2022/06/11 12:04:30 by jraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,8 @@ endif
 fclean				:	clean
 	$(RM) -f $(PROGNAME) $(PROGNAME_BONUS) $(DEBUGNAME) $(BONUSDEBUGNAME)
 
-re					:	fclean $(NAME)
+re					:	fclean
+	$(MAKE) $(NAME)
 
 .PHONY				:	all bonus clean fclean re
 
