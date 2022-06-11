@@ -6,7 +6,7 @@
 #    By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/10 21:38:51 by jraffin          ###   ########.fr        #
+#    Updated: 2022/06/11 04:18:27 by jraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,15 @@ SRCDIR				:=	src
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	core/main.c					\
-						core/board.c				\
-						core/get_next_line.c		\
-						core/utils.c				\
+COMMONSRCS			:=	core/main.c						\
+						core/board.c					\
+						core/turns.c					\
 
-NOBONUSSRCS			:=	display/display.c			\
+NOBONUSSRCS			:=	display/display_board.c			\
+						display/display_msgs.c			\
 
-BONUSSRCS			:=
+BONUSSRCS			:=	display_bonus/display_board.c	\
+						display_bonus/display_msgs.c	\
 
 CC					:=	cc
 RM					:=	rm
@@ -57,13 +58,13 @@ endif
 
 $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
-	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(SANITIZE) $(addprefix -I ,$(INCLUDEDIR)) $< -o $@
+	$(CC) -c -MMD -MP $(CCFLAGS) $(OPTFLAG) $(addprefix -I ,$(INCLUDEDIR)) $(addprefix -I ,$(dir $(LIBFT))) $< -o $@
 
-$(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(OPTFLAG) $(SANITIZE) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFLAGS)
+$(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT) $(LIBFLAGS)
 
-$(BONUSNAME)		:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(OPTFLAG) $(SANITIZE) -o $(BONUSNAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFLAGS)
+$(BONUSNAME)		:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(BONUSNAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(LIBFLAGS)
 
 all					:	$(NAME) $(BONUSNAME)
 
@@ -91,7 +92,7 @@ endif
 
 ifdef LIBFT
 $(LIBFT)			:
-	$(MAKE) -Cj $(dir $(LIBFT)) $(notdir $(LIBFT))
+	$(MAKE) -j -C $(dir $(LIBFT)) $(notdir $(LIBFT))
 endif
 
 $(OUTDIR)			:

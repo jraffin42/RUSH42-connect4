@@ -1,0 +1,7 @@
+obj/
+debugobj/
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+connect4
+connect4.debug
