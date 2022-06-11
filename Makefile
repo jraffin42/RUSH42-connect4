@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/11 15:26:50 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/06/11 16:06:50 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,16 @@ SRCDIR				:=	src
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	core/main.c						\
-						core/board.c					\
+COMMONSRCS			:=	core/board.c					\
 						core/turns.c					\
 						core/low_ai.c					\
 
-NOBONUSSRCS			:=	display/display_board.c			\
+NOBONUSSRCS			:=	core/main.c						\
+						display/display_board.c			\
 						display/display_msgs.c			\
 
-BONUSSRCS			:=	xdisplay/display_board.c		\
+BONUSSRCS			:=	xdisplay/x_main.c				\
+						xdisplay/display_board.c		\
 						xdisplay/display_msgs.c			\
 						xdisplay/display.c				\
 						xdisplay/ft_close.c				\

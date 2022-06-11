@@ -6,67 +6,32 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 23:19:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 08:59:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:01:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xdisplay.h"
 
-char	*ft_strnset(char c, size_t len)
+static int	ft_init1(t_c4 **c4)
 {
-	char	*ret;
-	size_t	i;
-
-	ret = (char *)ft_calloc(len + 1, sizeof(char));
-	if (!ret)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		ret[i] = c;
-		i++;
-	}
-	ret[i] = '\0';
-	return (ret);
-}
-
-char	**init_map(int x, int y)
-{
-	char	**map;
-	int		i;
-
-	map = (char **)ft_calloc(x + 1, sizeof(char *));
-	if (!map)
-		return (NULL);
-	map[0] = ft_strnset('T', y);
-	i = 1;
-	while (i < x)
-	{
-		map[i] = ft_strnset('0', y);
-		if (!map[i++])
-			return (free_tab(map), NULL);
-	}
-	map[i] = NULL;
-	return (map);
-}
-
-static int	ft_init1(t_c4 **c4, char **av)
-{
-	(*c4)->x = ft_atoi(av[0]) + 1;
-	(*c4)->y = ft_atoi(av[1]);
+	(*c4)->x = (*c4)->board->height + 1;
+	(*c4)->y =(*c4)->board->width;
+	printf("height : %i\n", (*c4)->x);
+	printf("Width : %i\n", (*c4)->y);
 	(*c4)->width = WIDTH;
 	(*c4)->height = HEIGHT;
-	(*c4)->p_color = RED;
+	(*c4)->p_color = (*c4)->board->token[1];
+	printf("color : %c\n", (*c4)->p_color);
 	(*c4)->p_pos = 0;
-	(*c4)->map = init_map((*c4)->x, (*c4)->y);
-	if (!(*c4)->map)
-		return (0);
+	(*c4)->move = -1;
+	(*c4)->err_str = NULL;
+	(*c4)->is_player_turn = (*c4)->p_color == YEL_CHAR;
 	return (1);
 }
 
-int	ft_init(t_c4 **c4, char **av)
+int	ft_init(t_c4 **c4)
 {
-	ft_init1(c4, av);
+	ft_init1(c4);
 	(*c4)->mlx = mlx_init();
 	if (!(*c4)->mlx)
 		return (0);

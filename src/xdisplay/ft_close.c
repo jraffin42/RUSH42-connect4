@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:39:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 08:59:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:49:36 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	free_tab(char **tab)
 int	ft_close(t_c4 **c4, char type)
 {
 	ft_close_img(c4);
-	free_tab((*c4)->map);
 	free_struct((*c4)->mlx, (*c4)->win, 'W');
 	free_struct((*c4)->mlx, NULL, 'M');
 	if (type == 'W')
