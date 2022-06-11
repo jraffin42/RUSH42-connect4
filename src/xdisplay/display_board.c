@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:49:10 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 12:15:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:31:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	display_board(t_board *board)
 				write(1, "\e[1;43m[", 8);
 			else
 				write(1, "\e[0m", 4);
-
 			write(1, " ", 1);
 			++x;
 		}

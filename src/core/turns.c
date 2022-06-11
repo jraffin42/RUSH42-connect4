@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 02:31:01 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 11:40:03 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:03:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static int	backtracking(t_board *board, int is_player_turn, int depth)
 		if (board->lengths[i] < board->height)
 		{
 			if (is_player_turn)
-				board->map[i][board->lengths[i]++] = board->p_char;
+				board->map[i][board->lengths[i]++] = board->token[1];
 			else
-				board->map[i][board->lengths[i]++] = board->ai_char;
+				board->map[i][board->lengths[i]++] = board->token[0];
 			if (!is_player_turn && is_won(board, i))
 				++wins;
 			else
@@ -59,7 +59,7 @@ int	ai_turn(t_board *board)
 	{
 		if (board->lengths[i] < board->height)
 		{
-			board->map[i][board->lengths[i]++] = board->ai_char;
+			board->map[i][board->lengths[i]++] = board->token[0];
 			wins = backtracking(board, 1, 0);
 			if (wins > max_wins)
 			{
@@ -71,6 +71,16 @@ int	ai_turn(t_board *board)
 		++i;
 	}
 	return (best_move);
+}
+
+void	clean_gnl(char *s)
+{
+	char	*ptr;
+
+	ptr = ft_strchr(s, '\n');
+	if (!ptr)
+		return ;
+	*ptr = '\0';
 }
 
 int	player_turn(t_board *board)
@@ -91,12 +101,15 @@ int	player_turn(t_board *board)
 		line = ft_gnl(0);
 		if (!line)
 			return (-1);
+		clean_gnl(line);
 		err = ft_atoi_err(line, &move);
 		free(line);
 		if (err)
 			err_str = "Invalid integer.";
 		else if (move < 0 || move >= board->width)
 			err_str = "Column out of range.";
+		else if (board->lengths[move] == board->height)
+			err_str = "Column filled.";
 		else
 			return (move);
 	}

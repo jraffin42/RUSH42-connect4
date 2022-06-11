@@ -6,29 +6,22 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 23:35:42 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 11:53:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:33:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <time.h>
+#include <stdlib.h>
 #include "libft.h"
 #include "core.h"
 
-int	allocate_board(t_board *board)
+static int	init_content(t_board *board)
 {
 	int	i;
-	int	step;
 
-	write (1, "Allocating memory space", 23);
-	board->map = ft_calloc(board->width, sizeof(char *));
-	board->lengths = ft_calloc(board->width, sizeof(size_t));
-	if (!board->map || !board->lengths)
-		return (free(board->map), 1);
 	i = 0;
-	step = ft_max(board->width / 100, 1);
 	while (i < board->width)
 	{
-		if (!(i % step))
-			write(1, ".", 1);
 		board->map[i] = ft_calloc(board->height + 1, sizeof(char));
 		if (!board->map[i])
 		{
@@ -37,11 +30,29 @@ int	allocate_board(t_board *board)
 			free(board->map);
 			return (1);
 		}
+		ft_memset(board->map[i], NUL_CHAR, board->height);
 		++i;
 	}
-	board->n_fill = 0;
-	board->ai_char = RED_CHAR;
-	board->p_char = RED_CHAR;
+	return (0);
+}
+
+int	init_board(t_board *board)
+{
+	int	i;
+
+	board->map = ft_calloc(board->width, sizeof(char *));
+	if (!board->map)
+		return (1);
+	board->lengths = ft_calloc(board->width, sizeof(size_t));
+	if (!board->lengths)
+		return (free(board->map), 1);
+	if (init_content(board))
+		return (1);
+	board->fill = 0;
+	board->size = board->width * board->height;
+	i = (srand(time(NULL)), rand() % 2);
+	board->token[i] = YEL_CHAR;
+	board->token[!i] = RED_CHAR;
 	return (0);
 }
 
@@ -54,25 +65,6 @@ void	free_board(t_board *board)
 	board->lengths = NULL;
 	free(board->map);
 	board->map = NULL;
-}
-
-int	is_full(t_board *board)
-{
-	int	i;
-
-	i = board->width;
-	while (i--)
-		if (board->lengths[i] < board->height)
-			return (0);
-	return (1);
-}
-
-int	get_completion(t_board *board)
-{
-	int	slots;
-
-	slots = board->width * board->height;
-	return ((slots * board->n_fill) / 100);
 }
 
 static int	count_line_from(t_board *brd, int last_move, int way_x, int way_y)
