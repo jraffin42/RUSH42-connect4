@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 21:08:07 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 15:32:09 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:46:52 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int	game_loop(t_board *board)
 	while (!won && board->fill < board->size)
 	{
 		display_board(board);
-		// if (is_player_turn)
-		move = player_turn(board);
-		// else
-		// 	move = ai_turn(board);
+		if (is_player_turn)
+			move = player_turn(board);
+		else
+			move = ai_turn(board);
 		if (move == -1)
 		{
-			write(2, "Error reading stdin\n", 25);
+			write(2, "Error reading stdin\n", 20);
 			return (1);
 		}
 		won = is_won(board, move);

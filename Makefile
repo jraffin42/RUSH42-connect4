@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/11 15:26:50 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/06/11 15:46:11 by jraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ DEBUGDIR			:=	./debugobj
 
 COMMONSRCS			:=	core/main.c						\
 						core/board.c					\
-						core/turns.c					\
+						core/player_turn.c				\
+						core/ai_turn.c					\
 						core/low_ai.c					\
 
 NOBONUSSRCS			:=	display/display_board.c			\
