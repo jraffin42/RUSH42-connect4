@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 00:35:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 01:37:36 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	x_game_loop(t_c4 **c4)
 	int		move;
 	t_board	*board;
 
+	if ((*c4)->won)
+		return (0);
 	board = (*c4)->board;
 	if (!board->left)
 		return (end_game(c4, 'S'), 0);

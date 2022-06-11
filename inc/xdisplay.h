@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 00:38:47 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 01:29:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_c4 {
 	char	p_color;
 	int		p_pos;
 	int		move;
+	int		won;
 	int		do_display;
 	void	*bg;
 	void	*red;

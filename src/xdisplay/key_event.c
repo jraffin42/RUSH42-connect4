@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 00:51:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 01:35:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@
 void	end_game(t_c4 **c4, char type)
 {
 	display_board((*c4)->board);
-	mlx_loop_end((*c4)->mlx);
-	ft_close(c4, type);
+	if (type == 'W')
+		ft_putstr_fd(COLOR_GREEN "Win\n" COLOR_GREEN, 1);
+	if (type == 'S')
+		ft_putstr_fd(COLOR_YELLOW "Spare\n" COLOR_YELLOW, 1);
+	if (type == 'L')
+		ft_putstr_fd(COLOR_RED "Lose\n" COLOR_RED, 1);
+	ft_putstr_fd("Press ESC or click the red cross to terminate\n", 1);
+	(*c4)->won = 1;
 }
 
 void	do_move(t_c4 **c4, t_board *board, int player, int move)
@@ -71,11 +77,14 @@ int	e_key_down(int keycode, t_c4 **c4)
 {
 	if (keycode == EVENT_ESC)
 		ft_close(c4, 'E');
-	if (keycode == EVENT_A)
-		move_p(c4, (*c4)->p_pos - 1);
-	if (keycode == EVENT_D)
-		move_p(c4, (*c4)->p_pos + 1);
-	if (keycode == EVENT_SPACE)
-		(*c4)->move = (*c4)->p_pos;
+	if (!(*c4)->won)
+	{
+		if (keycode == EVENT_A)
+			move_p(c4, (*c4)->p_pos - 1);
+		if (keycode == EVENT_D)
+			move_p(c4, (*c4)->p_pos + 1);
+		if (keycode == EVENT_SPACE)
+			(*c4)->move = (*c4)->p_pos;
+	}
 	return (0);
 }
