@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 21:08:07 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 04:16:51 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/11 11:40:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ int	game_loop(t_board *board)
 	srand(time(NULL));
 	is_player_turn = rand() % 2;
 	won = 0;
+	if (is_player_turn)
+		board->p_char = YEL_CHAR;
+	else
+		board->ai_char = YEL_CHAR;
 	while (!won && !is_full(board))
 	{
 		display_board(board);
@@ -53,6 +57,10 @@ int	game_loop(t_board *board)
 			return (1);
 		}
 		won = is_won(board, move);
+		if (board->n_fill % 2)
+			play_move(board, move, YEL_CHAR);
+		else
+			play_move(board, move, RED_CHAR);
 	}
 	return (0);
 }
@@ -60,7 +68,7 @@ int	game_loop(t_board *board)
 int	main(int argc, char **argv)
 {
 	t_board	board;
-
+		
 	if (arg_check(argc, argv, &board.width, &board.height))
 		return (1);
 	if (allocate_board(&board))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turns.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 02:31:01 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 03:50:54 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/11 11:40:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 static int	backtracking(t_board *board, int is_player_turn, int depth)
 {
-	static const char	c[2] = {AI_CHAR, PLAYER_CHAR};
 	int					i;
 	int					wins;
 
@@ -31,7 +30,10 @@ static int	backtracking(t_board *board, int is_player_turn, int depth)
 	{
 		if (board->lengths[i] < board->height)
 		{
-			board->map[i][board->lengths[i]++] = c[is_player_turn];
+			if (is_player_turn)
+				board->map[i][board->lengths[i]++] = board->p_char;
+			else
+				board->map[i][board->lengths[i]++] = board->ai_char;
 			if (!is_player_turn && is_won(board, i))
 				++wins;
 			else
@@ -57,7 +59,7 @@ int	ai_turn(t_board *board)
 	{
 		if (board->lengths[i] < board->height)
 		{
-			board->map[i][board->lengths[i]++] = AI_CHAR;
+			board->map[i][board->lengths[i]++] = board->ai_char;
 			wins = backtracking(board, 1, 0);
 			if (wins > max_wins)
 			{
@@ -80,6 +82,7 @@ int	player_turn(t_board *board)
 
 	move = -1;
 	err_str = "";
+	line = "";
 	while (1)
 	{
 		display_board(board);
@@ -92,7 +95,7 @@ int	player_turn(t_board *board)
 		free(line);
 		if (err)
 			err_str = "Invalid integer.";
-		else if (move < 0 || move > board->width)
+		else if (move < 0 || move >= board->width)
 			err_str = "Column out of range.";
 		else
 			return (move);

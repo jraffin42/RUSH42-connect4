@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   board.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 23:35:42 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 04:09:18 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/11 11:53:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	allocate_board(t_board *board)
 		}
 		++i;
 	}
+	board->n_fill = 0;
+	board->ai_char = RED_CHAR;
+	board->p_char = RED_CHAR;
 	return (0);
 }
 
@@ -62,6 +65,14 @@ int	is_full(t_board *board)
 		if (board->lengths[i] < board->height)
 			return (0);
 	return (1);
+}
+
+int	get_completion(t_board *board)
+{
+	int	slots;
+
+	slots = board->width * board->height;
+	return ((slots * board->n_fill) / 100);
 }
 
 static int	count_line_from(t_board *brd, int last_move, int way_x, int way_y)
