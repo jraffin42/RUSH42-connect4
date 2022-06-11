@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 20:04:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:19:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	xplayer_turn(t_c4 **c4, t_board *board)
 	{
 		display_board(board);
 		xdisplay_error((*c4)->err_str);
+		free((*c4)->err_str);
 		display_info("Please press SPACE on the column you want to play");
 		if (board->lengths[(*c4)->move] == board->height)
 			(*c4)->err_str = ft_strdup("Column filled.");

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 20:04:32 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:12:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	move_p(t_c4 **c4, int y)
 int	e_key_down(int keycode, t_c4 **c4)
 {
 	if (keycode == EVENT_ESC)
-		mlx_loop_end((*c4)->mlx);
+		ft_close(c4, 'E');
 	if (keycode == EVENT_A)
 		move_p(c4, (*c4)->p_pos - 1);
 	if (keycode == EVENT_D)

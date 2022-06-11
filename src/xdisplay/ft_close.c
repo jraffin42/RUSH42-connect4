@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:39:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 19:23:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:25:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	free_struct(void *mlx, void *ptr, char type)
 
 int	red_cross_close(t_c4 **c4)
 {
-	mlx_loop_end((*c4)->mlx);
+	ft_close(c4, 'E');
 	return (0);
 }
 
@@ -56,6 +56,9 @@ void	free_tab(char **tab)
 void	ft_close(t_c4 **c4, char type)
 {
 	ft_close_img(c4);
+	free_struct(NULL, (*c4)->err_str, 'P');
+	free_struct(NULL, (*c4)->board->lengths, 'P');
+	free_tab((*c4)->board->map);
 	free_struct((*c4)->mlx, (*c4)->win, 'W');
 	free_struct((*c4)->mlx, NULL, 'M');
 	if (type == 'W')
