@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:39:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 15:49:36 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:23:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,21 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-int	ft_close(t_c4 **c4, char type)
+void	ft_close(t_c4 **c4, char type)
 {
 	ft_close_img(c4);
 	free_struct((*c4)->mlx, (*c4)->win, 'W');
 	free_struct((*c4)->mlx, NULL, 'M');
 	if (type == 'W')
-		ft_putstr_fd(COLOR_GREEN "\rWin\n" COLOR_GREEN, 1);
+		ft_putstr_fd(COLOR_GREEN "Win\n" COLOR_GREEN, 1);
 	if (type == 'E')
-		ft_putstr_fd(COLOR_YELLOW "\rExit\n" COLOR_YELLOW, 1);
+		ft_putstr_fd(COLOR_YELLOW "Exit\n" COLOR_YELLOW, 1);
+	if (type == 'S')
+		ft_putstr_fd(COLOR_YELLOW "Spare\n" COLOR_YELLOW, 1);
 	if (type == 'L')
-		ft_putstr_fd(COLOR_YELLOW "\rLose\n" COLOR_YELLOW, 1);
+		ft_putstr_fd(COLOR_RED "Lose\n" COLOR_RED, 1);
+	if (type == 'C')
+		ft_putstr_fd(COLOR_RED "Error\n" COLOR_RED, 1);
 	free_struct(NULL, (*c4)->mlx, 'P');
 	free_struct(NULL, (*c4), 'P');
-	return (0);
 }

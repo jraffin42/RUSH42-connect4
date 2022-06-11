@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 21:08:07 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 15:32:09 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:17:59 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,34 @@ int	game_loop(t_board *board)
 	int		move;
 	int		won;
 
-	won = 0;
 	is_player_turn = board->token[1] == YEL_CHAR;
-	while (!won && board->fill < board->size)
+	display_board(board);
+	while (board->left)
 	{
-		display_board(board);
-		// if (is_player_turn)
-		move = player_turn(board);
-		// else
-		// 	move = ai_turn(board);
+		if (is_player_turn)
+			move = player_turn(board);
+		else
+			move = ai_turn(board);
 		if (move == -1)
 		{
-			write(2, "Error reading stdin\n", 25);
+			write(2, "Error reading stdin\n", 20);
 			return (1);
 		}
-		won = is_won(board, move);
 		board->map[move][board->lengths[move]++] = board->token[is_player_turn];
-		board->fill++;
-		is_player_turn = !is_player_turn;
+		--board->left;
+		display_board(board);
+		won = is_won(board, move);
+		if (won)
+			break ;
+		else
+			is_player_turn = !is_player_turn;
 	}
+	if (!won)
+		write(2, "IT'S A TIE !\n", 13);
+	else if (is_player_turn)
+		write(2, "PLAYER WON !\n", 13);
+	else
+		write(2, "IA WON !\n", 9);
 	return (0);
 }
 
@@ -71,8 +80,7 @@ int	main(int argc, char **argv)
 	if (init_board(&board))
 		return (ft_put_error(argv[0], NULL,
 				"Error : couldn't allocate memory !", 1));
-	if (!game_loop(&board))
-		write(1, "\x1B[2J\x1B[H", 7);
+	game_loop(&board);
 	free_board(&board);
 	return (0);
 }

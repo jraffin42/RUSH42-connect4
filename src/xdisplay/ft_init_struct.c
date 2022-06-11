@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 23:19:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 18:01:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:36:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	ft_init1(t_c4 **c4)
 	(*c4)->p_pos = 0;
 	(*c4)->move = -1;
 	(*c4)->err_str = NULL;
+	(*c4)->do_display = 1;
 	(*c4)->is_player_turn = (*c4)->p_color == YEL_CHAR;
 	return (1);
 }

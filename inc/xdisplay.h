@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 17:51:47 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:23:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_c4 {
 	char	p_color;
 	int		p_pos;
 	int		move;
+	int		do_display;
 	void	*bg;
 	void	*red;
 	void	*yellow;
@@ -54,12 +55,13 @@ typedef struct s_c4 {
 }	t_c4;
 
 int		xdisplay(t_board *board);
-int		ft_close(t_c4 **c4, char type);
+void	ft_close(t_c4 **c4, char type);
 int		ft_init(t_c4 **c4);
 int		ft_init_tex(t_c4 **c4);
 int		ft_init_img(t_c4 **c4);
 int		e_key_down(int keycode, t_c4 **c4);
 int		red_cross_close(t_c4 **c4);
 void	free_tab(char **tab);
+int		do_move(t_c4 **c4, t_board *board, int player, int move);
 
 #endif

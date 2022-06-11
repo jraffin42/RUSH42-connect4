@@ -6,11 +6,31 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 17:40:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:27:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xdisplay.h"
+
+int	do_move(t_c4 **c4, t_board *board, int player, int move)
+{
+	int	y;
+
+	y = board->height - board->lengths[move];
+	board->map[move][board->lengths[move]++] = board->token[player];
+	--board->left;
+	if ((*c4)->p_color == RED_CHAR)
+		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->red,
+			(*c4)->move	* WIDTH, y * HEIGHT);
+	else
+		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->yellow,
+			(*c4)->move * WIDTH, y * HEIGHT);
+	mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->bg_top,
+			(*c4)->move * WIDTH, 0 * HEIGHT);
+	(*c4)->is_player_turn = !(*c4)->is_player_turn;
+	(*c4)->do_display = 1;
+	return (0);
+}
 
 int	move_p(t_c4 **c4, int y)
 {

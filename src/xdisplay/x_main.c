@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:02:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 16:36:03 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:21:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,40 @@ static int	arg_check(int argc, char **argv, int *width, int *height)
 	return (0);
 }
 
-static int	game_loop(t_board *board)
+int	game_loop(t_board *board)
 {
 	int		is_player_turn;
 	int		move;
 	int		won;
 
-	won = 0;
 	is_player_turn = board->token[1] == YEL_CHAR;
-	while (!won && board->fill < board->size)
+	display_board(board);
+	while (board->left)
 	{
-		display_board(board);
-		// if (is_player_turn)
-		move = player_turn(board);
-		// else
-		// 	move = ai_turn(board);
+		if (is_player_turn)
+			move = player_turn(board);
+		else
+			move = ai_turn(board);
 		if (move == -1)
 		{
 			write(2, "Error reading stdin\n", 20);
 			return (1);
 		}
-		won = is_won(board, move);
 		board->map[move][board->lengths[move]++] = board->token[is_player_turn];
-		board->fill++;
-		is_player_turn = !is_player_turn;
+		--board->left;
+		display_board(board);
+		won = is_won(board, move);
+		if (won)
+			break ;
+		else
+			is_player_turn = !is_player_turn;
 	}
+	if (!won)
+		write(2, "IT'S A TIE !\n", 13);
+	else if (is_player_turn)
+		write(2, "PLAYER WON !\n", 13);
+	else
+		write(2, "IA WON !\n", 9);
 	return (0);
 }
 

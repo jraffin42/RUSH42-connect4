@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 21:07:35 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 16:37:32 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/11 16:34:29 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef struct s_board
 	int		height;
 	char	**map;
 	int		*lengths;
-	int		fill;
-	int		size;
+	int		left;
 	char	token[2];
 }	t_board;
 
@@ -34,7 +33,6 @@ int		init_board(t_board *board);
 void	free_board(t_board *board);
 int		is_full(t_board *board);
 char	is_won(t_board *board, int last_move);
-void	clean_gnl(char *s);
 
 int		ai_turn(t_board *board);
 int		player_turn(t_board *board);
