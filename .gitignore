@@ -1,6 +1,7 @@
 .vscode/*
 !.vscode/tasks.json
 !.vscode/launch.json
+ft_mallocator/
 libft/obj/
 libft/debugobj/
 libft/libft.a

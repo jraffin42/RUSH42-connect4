@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:42:49 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 17:18:05 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 19:25:15 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static char	*add_n_to_line(char *line, size_t *len, t_gnlbuf *buffer, size_t n)
 	if (!n)
 		return (line);
 	newline = malloc(sizeof(char) * (*len + n + 1));
-	newline[*len + n] = '\0';
 	if (!newline)
 		return (free(line), NULL);
+	newline[*len + n] = '\0';
 	ft_memmove(newline, line, *len);
 	free(line);
 	ft_memmove(newline + *len, buffer->data, n);
@@ -75,16 +75,16 @@ char	*ft_gnl(int fd)
 	char			*line;
 
 	if (fd < 0)
-		return (cleanup(buf, fd), NULL);
+		return (cleanup(buf, ~fd), NULL);
 	if (fd >= GNL_FD_MAXSIZE)
 		return (NULL);
 	if (!buf[fd])
 	{
 		buf[fd] = malloc(sizeof(t_gnlbuf));
+		if (!buf[fd])
+			return (NULL);
 		buf[fd]->size = 0;
 	}
-	if (!buf[fd])
-		return (NULL);
 	line = gnl_core(buf[fd], fd);
 	if (!line || !buf[fd]->size)
 		buf[fd] = (free(buf[fd]), NULL);

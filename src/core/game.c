@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 14:38:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 17:43:59 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 18:23:35 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	game_loop(t_board *board)
 		else
 			move = ai_turn(board);
 		if (move == -1)
-            return (ft_putstr_fd("Error reading stdin\n", 2), 1);
+			return (ft_putstr_fd("Error reading stdin\n", 2), 1);
 		board->map[move][board->lengths[move]++] = board->token[is_player_turn];
 		--board->left;
 		display_board(board);

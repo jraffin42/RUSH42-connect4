@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 23:35:42 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 16:59:13 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 19:53:57 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	init_content(t_board *board)
 			while (i--)
 				free(board->map[i]);
 			free(board->map);
+			free(board->lengths);
 			return (1);
 		}
 		ft_memset(board->map[i], NUL_CHAR, board->height);

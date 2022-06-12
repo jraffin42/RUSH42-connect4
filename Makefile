@@ -6,7 +6,7 @@
 #    By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/12 17:49:45 by jraffin          ###   ########.fr        #
+#    Updated: 2022/06/12 20:02:13 by jraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ CC					:=	cc
 RM					:=	rm
 
 CCFLAGS				:=	-Wall -Wextra -Werror
-LIBFLAGS			:= -g3
+LIBFLAGS			:=
 OPTFLAG				:=
 
 NAME				:=	$(PROGNAME)
@@ -75,8 +75,13 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT) $(LIBFLAGS)
 
+ifdef DEBUG
 malloc_test: $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -fsanitize=undefined -rdynamic -o $@ $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT) $(LIBFLAGS) -L. -lmallocator
+else
+malloc_test:
+	$(MAKE) DEBUG=1 malloc_test
+endif
 
 $(BONUSNAME)		:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(BONUSNAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX) -lXext -lX11 -lm -lbsd $(LIBFLAGS)
