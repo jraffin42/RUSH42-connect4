@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 23:15:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 23:22:36 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	end_game(t_c4 **c4, char type)
 {
 	display_board((*c4)->board);
 	if (type == 'W')
-		ft_putstr_fd(COLOR_GREEN "Congratulations you win !\n" COLOR_GREEN, 1);
+		ft_putstr_fd(COLOR_GREEN "Congratulations you win !\n" "\x1b[0m", 1);
 	if (type == 'S')
-		ft_putstr_fd(COLOR_YELLOW "It's a draw.\n" COLOR_YELLOW, 1);
+		ft_putstr_fd(COLOR_YELLOW "It's a draw.\n" "\x1b[0m", 1);
 	if (type == 'L')
-		ft_putstr_fd(COLOR_RED "Sorry you lost ...\n" COLOR_RED, 1);
+		ft_putstr_fd(COLOR_RED "Sorry you lost ...\n" "\x1b[0m", 1);
 	ft_putstr_fd("\nPress ESC or click the red cross to exit...\n", 1);
 	(*c4)->won = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:39:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 17:15:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 23:22:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_close(t_c4 **c4)
 	free_board((*c4)->board);
 	free_struct((*c4)->mlx, (*c4)->win, 'W');
 	free_struct((*c4)->mlx, NULL, 'M');
-	ft_putstr_fd(COLOR_YELLOW "Exit\n" COLOR_YELLOW, 1);
+	ft_putstr_fd(COLOR_YELLOW "Exit\n" "\x1b[0m", 1);
 	free_struct(NULL, (*c4)->mlx, 'P');
 	free_struct(NULL, (*c4), 'P');
 }
