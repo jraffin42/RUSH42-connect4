@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 02:31:01 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 15:45:44 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 01:40:43 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	player_turn(t_board *board)
 	line = "";
 	while (1)
 	{
-		display_board(board);
 		display_error(err_str);
 		display_info("Please enter the column you want to play : ");
 		line = ft_gnl(0);
@@ -54,5 +53,6 @@ int	player_turn(t_board *board)
 			err_str = "Column filled.";
 		else
 			return (move);
+		display_board(board);
 	}
 }
