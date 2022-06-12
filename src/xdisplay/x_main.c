@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   x_main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:02:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 18:51:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 23:38:26 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	if (init_board(&board))
 		return (ft_putstr_fd("Error : couldn't allocate memory !\n", 2), 1);
-	if (argc == 3 && !(game_loop(&board)))
-		ft_putstr_fd("\x1B[2J\x1B[H", 1);
-	if (argc == 4 && check_envp(envp))
+	if (argc == 3)
+		game_loop(&board);
+	else if (check_envp(envp))
 		return (ft_putstr_fd("Error : couldn't init mlx !\n", 2), 1);
-	else if (argc == 4 && xdisplay(&board))
+	else if (xdisplay(&board))
 		return (ft_putstr_fd("Error : couldn't init mlx !\n", 2), 1);
 	free_board(&board);
 	return (0);
