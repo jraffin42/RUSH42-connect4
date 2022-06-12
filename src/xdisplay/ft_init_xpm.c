@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 23:45:03 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/11 17:38:21 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 17:05:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static int	ft_init_bg(t_c4 **c4)
 	(*c4)->bg_top = mlx_xpm_file_to_image((*c4)->mlx,
 			"./textures/tbg.xpm", &(*c4)->width, &(*c4)->height);
 	if (!(*c4)->bg || !(*c4)->bg_top)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 static int	ft_init_player(t_c4 **c4)
@@ -34,15 +34,15 @@ static int	ft_init_player(t_c4 **c4)
 	(*c4)->top_yellow = mlx_xpm_file_to_image((*c4)->mlx,
 			"./textures/tyel.xpm", &(*c4)->width, &(*c4)->height);
 	if (!(*c4)->red || !(*c4)->top_red || !(*c4)->yellow || !(*c4)->top_yellow)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 int	ft_init_tex(t_c4 **c4)
 {
-	if (!ft_init_bg(c4))
-		return (0);
-	if (!ft_init_player(c4))
-		return (0);
-	return (1);
+	if (ft_init_bg(c4))
+		return (1);
+	if (ft_init_player(c4))
+		return (1);
+	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+         #
+#    By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/24 18:18:02 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/12 15:06:05 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/06/12 16:15:05 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,14 +84,6 @@ SRCFILES		=	ft_abs.c					\
 					ft_toupper.c				\
 					ft_wcslen.c					\
 					ft_wcsnlen.c				\
-					ft_printf.c					\
-					ft_printf_convert.c			\
-					ft_printf_getaddr.c			\
-					ft_printf_lst_utils.c		\
-					ft_printf_struct_utils.c	\
-					ft_printf_tohex.c			\
-					ft_printf_utils.c			\
-					ft_printf_struct.c			\
 
 SRCS			=	$(addprefix $(SRCDIR)/,$(SRCFILES))
 OBJS			=	$(addprefix $(OBJDIR)/,$(SRCFILES:.c=.o))

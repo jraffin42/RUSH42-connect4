@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 14:57:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 17:13:43 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	xplayer_turn(t_c4 **c4, t_board *board)
 	if ((*c4)->is_player_turn && (*c4)->do_display)
 	{
 		display_board(board);
-		xdisplay_error((*c4)->err_str);
+		xdisplay_error(&(*c4)->err_str);
 		display_info("Please press SPACE on the column you want to play");
 		(*c4)->do_display = 0;
 	}
 	if ((*c4)->move != -1)
 	{
 		display_board(board);
-		xdisplay_error((*c4)->err_str);
+		xdisplay_error(&(*c4)->err_str);
 		display_info("Please press SPACE on the column you want to play");
 		if (board->lengths[(*c4)->move] == board->height)
 		{
@@ -78,13 +78,11 @@ int	xdisplay(t_board *board)
 		return (1);
 	c4->board = board;
 	if (!ft_init(&c4))
-	{
-		ft_close(&c4, 'C');
-		return (1);
-	}
+		return (ft_close(&c4), 1);
 	mlx_hook(c4->win, 17, 1L << 17, red_cross_close, &c4);
 	mlx_key_hook(c4->win, e_key_down, &c4);
 	mlx_loop_hook(c4->mlx, x_game_loop, &c4);
 	mlx_loop(c4->mlx);
-	return (EXIT_SUCCESS);
+	ft_close(&c4);
+	return (0);
 }
