@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   x_main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:02:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 00:36:41 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:43:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ int	main(int argc, char **argv)
 	if (init_board(&board))
 		return (ft_put_error(argv[0], NULL,
 				"Error : couldn't allocate memory !", 1));
-	//if (argc == 3 && !(game_loop(&board)))
-	//	write(1, "\x1B[2J\x1B[H", 7);
+	if (argc == 3 && !(game_loop(&board)))
+		write(1, "\x1B[2J\x1B[H", 7);
 	if (argc == 4 && xdisplay(&board))
 		write(1, "\x1B[2J\x1B[H", 7);
-	while (1) {}
- 	free_board(&board);
+	free_board(&board);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xdisplay.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:50:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:29:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:28:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define HEIGHT 50
 # define WIDTH 50
 
+# define ANIM_RATE 5000
+
 typedef struct s_c4 {
 	void	*mlx;
 	void	*win;
@@ -45,6 +47,8 @@ typedef struct s_c4 {
 	int		move;
 	int		won;
 	int		do_display;
+	int		anim;
+	int		anim_count;
 	void	*bg;
 	void	*red;
 	void	*yellow;
@@ -62,6 +66,7 @@ int		ft_init_tex(t_c4 **c4);
 int		ft_init_img(t_c4 **c4);
 
 void	do_move(t_c4 **c4, t_board *board, int player, int move);
+int		move_anim(t_c4 **c4);
 
 int		e_key_down(int keycode, t_c4 **c4);
 int		red_cross_close(t_c4 **c4);

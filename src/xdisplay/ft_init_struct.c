@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 23:19:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:30:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 13:56:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	ft_init1(t_c4 **c4)
 	(*c4)->p_pos = 0;
 	(*c4)->move = -1;
 	(*c4)->won = 0;
+	(*c4)->anim_count = 0;
+	(*c4)->anim = 0;
 	(*c4)->err_str = NULL;
 	(*c4)->do_display = 1;
 	(*c4)->is_player_turn = (*c4)->p_color == YEL_CHAR;

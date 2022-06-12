@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:41:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:35:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:46:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,8 @@ void	end_game(t_c4 **c4, char type)
 		ft_putstr_fd(COLOR_YELLOW "Spare\n" COLOR_YELLOW, 1);
 	if (type == 'L')
 		ft_putstr_fd(COLOR_RED "Lose\n" COLOR_RED, 1);
-	ft_putstr_fd("Press ESC or click the red cross to terminate\n", 1);
+	ft_putstr_fd("Press ESC or click the red cross to exit\n", 1);
 	(*c4)->won = 1;
-}
-
-void	do_move(t_c4 **c4, t_board *board, int player, int move)
-{
-	int	y;
-
-	y = board->height - board->lengths[move];
-	board->map[move][board->lengths[move]++] = board->token[player];
-	--board->left;
-	if (player && (*c4)->p_color == RED_CHAR)
-		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->red,
-			move * WIDTH, y * HEIGHT);
-	else if (player)
-		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->yellow,
-			move * WIDTH, y * HEIGHT);
-	else if (!player && (*c4)->p_color == RED_CHAR)
-		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->yellow,
-			move * WIDTH, y * HEIGHT);
-	else if (!player)
-		mlx_put_image_to_window((*c4)->mlx, (*c4)->win, (*c4)->red,
-			move * WIDTH, y * HEIGHT);
-	if (is_won(board, move))
-	{
-		if (player)
-			return (end_game(c4, 'W'));
-		return (end_game(c4, 'L'));
-	}
-	(*c4)->is_player_turn = !(*c4)->is_player_turn;
-	(*c4)->do_display = 1;
 }
 
 int	move_p(t_c4 **c4, int y)
@@ -83,7 +54,7 @@ int	e_key_down(int keycode, t_c4 **c4)
 			move_p(c4, (*c4)->p_pos - 1);
 		if (keycode == EVENT_D)
 			move_p(c4, (*c4)->p_pos + 1);
-		if (keycode == EVENT_SPACE)
+		if (keycode == EVENT_SPACE && !(*c4)->anim)
 			(*c4)->move = (*c4)->p_pos;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/12 12:40:11 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/06/12 14:39:21 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,10 @@ SRCDIR				:=	src
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	core/main.c						\
-						core/board.c					\
+COMMONSRCS			:=	core/board.c					\
 						core/player_turn.c				\
 						core/ai_turn.c					\
-						core/low_ai.c					\
+						core/game.c						\
 
 NOBONUSSRCS			:=	core/main.c						\
 						display/display_board.c			\
@@ -44,6 +43,7 @@ BONUSSRCS			:=	xdisplay/x_main.c				\
 						xdisplay/ft_init_struct.c		\
 						xdisplay/ft_init_xpm.c			\
 						xdisplay/key_event.c			\
+						xdisplay/xanim.c			\
 
 CC					:=	cc
 RM					:=	rm

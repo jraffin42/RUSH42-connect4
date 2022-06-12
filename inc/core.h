@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 21:07:35 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 16:34:29 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 14:39:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	is_won(t_board *board, int last_move);
 
 int		ai_turn(t_board *board);
 int		player_turn(t_board *board);
+
+int		game_loop(t_board *board);
 
 int 	play_move(t_board *board, int move, char c);
 
