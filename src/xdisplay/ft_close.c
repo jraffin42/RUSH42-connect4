@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_close.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:39:15 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:35:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:58:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	ft_close(t_c4 **c4, char type)
 	mlx_loop_end((*c4)->mlx);
 	ft_close_img(c4);
 	free_board((*c4)->board);
-	free_struct(NULL, (*c4)->err_str, 'P');
 	free_struct((*c4)->mlx, (*c4)->win, 'W');
 	free_struct((*c4)->mlx, NULL, 'M');
 	if (type == 'W')

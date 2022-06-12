@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:50:15 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 14:46:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:58:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	display_info(char *message)
 void	xdisplay_error(char *s)
 {
 	if (s)
-		display_error(s);
+	{	display_error(s);
+		free(s);
+		s = NULL;
+	}
 	else
 		display_error("");
 }
