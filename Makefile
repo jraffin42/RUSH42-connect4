@@ -6,7 +6,7 @@
 #    By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/12 20:02:13 by jraffin          ###   ########.fr        #
+#    Updated: 2022/06/12 21:00:44 by jraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,30 +25,28 @@ SRCDIR				:=	src
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-COMMONSRCS			:=	core/board.c					\
-						core/player_turn.c				\
-						core/ai_turn.c					\
-						core/game.c						\
+COMMONSRCS			:=	core/board.c			\
+						core/player_turn.c		\
+						core/ai_turn.c			\
+						core/game.c				\
+						core/display_board.c	\
+						core/display_msgs.c		\
 
-NOBONUSSRCS			:=	core/main.c						\
-						display/display_board.c			\
-						display/display_msgs.c			\
+NOBONUSSRCS			:=	core/main.c					\
 
-BONUSSRCS			:=	xdisplay/x_main.c				\
-						xdisplay/display_board.c		\
-						xdisplay/display_msgs.c			\
-						xdisplay/display.c				\
-						xdisplay/ft_close.c				\
-						xdisplay/ft_init_img.c			\
-						xdisplay/ft_init_struct.c		\
-						xdisplay/ft_init_xpm.c			\
-						xdisplay/key_event.c			\
-						xdisplay/xanim.c				\
+BONUSSRCS			:=	xdisplay/x_main.c			\
+						xdisplay/display.c			\
+						xdisplay/ft_close.c			\
+						xdisplay/ft_init_img.c		\
+						xdisplay/ft_init_struct.c	\
+						xdisplay/ft_init_xpm.c		\
+						xdisplay/key_event.c		\
+						xdisplay/xanim.c			\
 
 CC					:=	cc
 RM					:=	rm
 
-CCFLAGS				:=	-Wall -Wextra -Werror
+CCFLAGS				:=	-Wall -Wextra -Werror -g
 LIBFLAGS			:=
 OPTFLAG				:=
 
@@ -75,16 +73,13 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT)
 	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(NAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT) $(LIBFLAGS)
 
-ifdef DEBUG
-malloc_test: $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT)
-	$(CC) $(CCFLAGS) $(OPTFLAG) -fsanitize=undefined -rdynamic -o $@ $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT) $(LIBFLAGS) -L. -lmallocator
-else
-malloc_test:
-	$(MAKE) DEBUG=1 malloc_test
-endif
+#malloc_test: $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT)
+#	$(CC) $(CCFLAGS) $(OPTFLAG) -fsanitize=undefined -rdynamic -o $@ $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.o)) $(LIBFT) $(LIBFLAGS) -L. -lmallocator
+malloc_test: $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -fsanitize=undefined -rdynamic -o $@ $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS) -lXext -lX11 -lm -lbsd -L. -lmallocator
 
 $(BONUSNAME)		:	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(BONUSNAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX) -lXext -lX11 -lm -lbsd $(LIBFLAGS)
+	$(CC) $(CCFLAGS) $(OPTFLAG) -o $(BONUSNAME) $(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.o)) $(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.o)) $(LIBFT) $(MLX) $(LIBFLAGS) -lXext -lX11 -lm -lbsd
 
 all					:	$(NAME) $(BONUSNAME)
 

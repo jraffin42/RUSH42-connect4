@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:44:50 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 17:51:21 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 22:48:21 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,17 @@ int	ai_turn(t_board *board)
 	int		score;
 	int		max_score;
 	int		move;
+	int		ai_depth;
 
 	max_score = INT_MIN;
 	move = win_column(board, 0);
 	if (move != -1)
 		return (move);
+	ai_depth = 11 - ((board->width - 6) / 2);
+	if (board->width > 17 && board->width < 21)
+		ai_depth += (board->width - 16) / 2;
+	if (ai_depth <= 0)
+		ai_depth = 1;
 	m = 0;
 	i = board->width / 2;
 	while (i >= 0 && i < board->width)
@@ -98,7 +104,7 @@ int	ai_turn(t_board *board)
 		{
 			board->map[i][board->lengths[i]++] = board->token[0];
 			--board->left;
-			score = -backtrack(board, -board->left / 2, board->left / 2, 1, MAX_AI_DEPTH);
+			score = -backtrack(board, -board->left / 2, board->left / 2, 1, ai_depth);
 			board->map[i][--board->lengths[i]] = NUL_CHAR;
 			++board->left;
 			if (score > max_score)
