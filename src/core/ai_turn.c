@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ai_turn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:44:50 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 12:40:09 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 17:51:21 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "libft.h"
 #include "core.h"
 #include "display.h"
-
-#define MAX_DEPTH	4
 
 static int	win_column(t_board *board, int player)
 {
@@ -100,7 +98,7 @@ int	ai_turn(t_board *board)
 		{
 			board->map[i][board->lengths[i]++] = board->token[0];
 			--board->left;
-			score = -backtrack(board, -board->left / 2, board->left / 2, 1, MAX_DEPTH);
+			score = -backtrack(board, -board->left / 2, board->left / 2, 1, MAX_AI_DEPTH);
 			board->map[i][--board->lengths[i]] = NUL_CHAR;
 			++board->left;
 			if (score > max_score)

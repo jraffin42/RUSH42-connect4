@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 11:40:56 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 02:21:14 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 18:10:56 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*ft_itoa(int n, char *str)
 		return (NULL);
 	if (n > 0)
 		n = -n;
+	str[i] = '\0';
 	str[--i] = '0' - (n % 10);
 	n /= 10;
 	while (n)
@@ -30,7 +31,7 @@ char	*ft_itoa(int n, char *str)
 		str[--i] = '0' - (n % 10);
 		n /= 10;
 	}
-	if (!i)
+	if (i)
 		str[0] = '-';
 	return (str + i);
 }

@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 21:07:35 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 14:39:42 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 18:19:29 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CORE_H
 # define CORE_H
 
-# define RED_CHAR	'X'
-# define YEL_CHAR	'O'
-# define NUL_CHAR	' '
-# define NUM_TO_WIN		4
+# define RED_CHAR			'X'
+# define YEL_CHAR			'O'
+# define NUL_CHAR			' '
+# define NUM_TO_WIN			4
+# define MAX_AI_DEPTH		4
+# define MAX_BOARD_WIDTH	50
+# define MAX_BOARD_HEIGHT	25
 
 //	token[0] for AI token, token[1] for player token.
 typedef struct s_board

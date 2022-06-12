@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 14:38:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 16:16:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 17:43:59 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "core.h"
 #include "display.h"
 
-static int game_end(int won, int is_player_turn)
+static int	game_end(int won, int is_player_turn)
 {
-    if (!won)
+	if (!won)
 		ft_putstr_fd("IT'S A TIE !\n", 1);
 	else if (is_player_turn)
 		ft_putstr_fd("PLAYER WON !\n", 1);

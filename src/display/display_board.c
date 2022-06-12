@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_board.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:49:10 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 16:36:03 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 17:47:02 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	display_digits(int count)
 		ft_putchar_fd(c, 1);
 		++i;
 	}
-		ft_putchar_fd('\n', 1);
+	ft_putchar_fd('\n', 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	display_board(t_board *board)
@@ -65,5 +66,4 @@ void	display_board(t_board *board)
 	}
 	display_line('-', board->width + 2);
 	display_digits(board->width);
-	ft_putchar_fd('\n', 1);
 }

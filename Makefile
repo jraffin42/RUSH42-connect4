@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 14:25:17 by jraffin           #+#    #+#              #
-#    Updated: 2022/06/12 16:09:37 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/06/12 17:49:45 by jraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,4 +135,6 @@ re					:	fclean
 
 .PHONY				:	all bonus clean fclean re
 
--include	$(addprefix $(OUTDIR)/,$(SRCS:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(COMMONSRCS:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(NOBONUSSRCS:.c=.d))
+-include	$(addprefix $(OUTDIR)/,$(BONUSSRCS:.c=.d))

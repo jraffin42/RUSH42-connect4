@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_turn.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 02:31:01 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 15:53:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 17:42:26 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,27 @@
 #include "core.h"
 #include "display.h"
 
-void	clean_gnl(char *s)
+int	get_move_and_free_line(char *line, int *move)
 {
 	char	*ptr;
+	int		ret;
 
-	ptr = ft_strchr(s, '\n');
-	if (!ptr)
-		return ;
-	*ptr = '\0';
+	ptr = ft_strchr(line, '\n');
+	if (ptr)
+		*ptr = '\0';
+	ret = ft_atoi_err(line, move);
+	free(line);
+	return (ret);
 }
 
 int	player_turn(t_board *board)
 {
-	int		err;
 	int		move;
 	char	*line;
 	char	*err_str;
 
 	move = -1;
 	err_str = "";
-	line = "";
 	while (1)
 	{
 		display_error(err_str);
@@ -42,10 +43,7 @@ int	player_turn(t_board *board)
 		line = ft_gnl(0);
 		if (!line)
 			return (-1);
-		clean_gnl(line);
-		err = ft_atoi_err(line, &move);
-		free(line);
-		if (err)
+		if (get_move_and_free_line(line, &move))
 			err_str = "Invalid integer.";
 		else if (move < 0 || move >= board->width)
 			err_str = "Column out of range.";
