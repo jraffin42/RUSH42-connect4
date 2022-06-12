@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 18:51:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:26:16 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	xplayer_turn(t_c4 **c4, t_board *board)
 		if (board->lengths[(*c4)->move] == board->height)
 		{
 			(*c4)->err_str = ft_strdup("Column filled.");
+			if (!(*c4)->err_str)
+				return (mlx_loop_end((*c4)->mlx), -1);
 			(*c4)->do_display = 1;
 		}
 		else
