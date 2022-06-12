@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:31:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 19:26:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 20:14:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ int	xdisplay(t_board *board)
 
 	c4 = (t_c4 *)ft_calloc(1, sizeof(t_c4));
 	if (!c4)
-		return (1);
+		return (free_board(board), 1);
 	c4->board = board;
 	if (ft_init(&c4))
-		return (1);
+		return (free(c4), 1);
 	mlx_hook(c4->win, 17, 1L << 17, red_cross_close, &c4);
 	mlx_key_hook(c4->win, e_key_down, &c4);
 	mlx_loop_hook(c4->mlx, x_game_loop, &c4);
