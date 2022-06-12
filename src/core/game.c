@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 14:38:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 14:42:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:53:15 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 static int game_end(int won, int is_player_turn)
 {
     if (!won)
-		write(2, "IT'S A TIE !\n", 13);
+		ft_printf("IT'S A TIE !\n");
 	else if (is_player_turn)
-		write(2, "PLAYER WON !\n", 13);
+		ft_printf("PLAYER WON !\n");
 	else
-		write(2, "IA WON !\n", 9);
+		ft_printf("IA WON !\n");
 	return (0);
 }
 
@@ -40,7 +40,7 @@ int	game_loop(t_board *board)
 		else
 			move = ai_turn(board);
 		if (move == -1)
-            return (write(2, "Error reading stdin\n", 20), 1);
+            return (ft_printf("Error reading stdin\n"), 1);
 		board->map[move][board->lengths[move]++] = board->token[is_player_turn];
 		--board->left;
 		display_board(board);

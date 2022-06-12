@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_board.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:49:10 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 23:58:41 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 15:51:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 static void	display_line(char c, int count)
 {
 	while (count--)
-		write(1, &c, 1);
-	write(1, "\n", 1);
+		ft_printf("%c", c);
+	ft_printf("\n");
 }
 
 static void	display_digits(int count)
@@ -27,15 +27,15 @@ static void	display_digits(int count)
 	int		i;
 	char	c;
 
-	write(1, " ", 1);
+	ft_printf(" ");
 	i = 0;
 	while (i < count)
 	{
 		c = '0' + i % 10;
-		write(1, &c, 1);
+		ft_printf("%c", c);
 		++i;
 	}
-	write(1, "\n", 1);
+	ft_printf("\n");
 }
 
 void	display_board(t_board *board)
@@ -43,27 +43,27 @@ void	display_board(t_board *board)
 	int	x;
 	int	y;
 
-	write(1, "\x1B[2J\x1B[H", 7);
+	ft_printf("\x1B[2J\x1B[H");
 	display_line('-', board->width + 2);
 	y = board->height;
 	while (y--)
 	{
-		write(1, "|", 1);
+		ft_printf("|");
 		x = 0;
 		while (x < board->width)
 		{
 			if (board->map[x][y] == RED_CHAR)
-				write(1, "\e[1;91m", 7);
+				ft_printf("\e[1;91m");
 			else if (board->map[x][y] == YEL_CHAR)
-				write(1, "\e[1;93m", 7);
+				ft_printf("\e[1;93m");
 			else
-				write(1, "\e[0m", 4);
-			write(1, &board->map[x][y], 1);
+				ft_printf("\e[0m");
+			ft_printf("%c", &board->map[x][y]);
 			++x;
 		}
-		write(1, "\e[0m|\n", 6);
+		ft_printf("\e[0m|\n", 6);
 	}
 	display_line('-', board->width + 2);
 	display_digits(board->width);
-	write(1, "\n", 1);
+	ft_printf("\n");
 }

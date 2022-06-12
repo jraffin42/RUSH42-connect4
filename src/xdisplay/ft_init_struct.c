@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 23:19:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 13:56:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:46:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_init(t_c4 **c4)
 	if (!(*c4)->mlx)
 		return (0);
 	(*c4)->win = mlx_new_window((*c4)->mlx, WIDTH * (*c4)->y,
-			HEIGHT * (*c4)->x, "connect4");
+			HEIGHT * (*c4)->x, "connect4_bonus");
 	if (!(*c4)->win)
 		return (0);
 	if (!ft_init_tex(c4))
