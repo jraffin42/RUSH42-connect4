@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 14:38:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 18:23:35 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 23:22:36 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 static int	game_end(int won, int is_player_turn)
 {
 	if (!won)
-		ft_putstr_fd("IT'S A TIE !\n", 1);
+		ft_putstr_fd("\x1b[33mIt's a draw.\x1b[0m\n", 1);
 	else if (is_player_turn)
-		ft_putstr_fd("PLAYER WON !\n", 1);
+		ft_putstr_fd("\x1b[32mCongratulations you win !\x1b[0m\n", 1);
 	else
-		ft_putstr_fd("IA WON !\n", 1);
+		ft_putstr_fd("\x1b[31mSorry you lost ...\x1b[0m\n", 1);
 	return (0);
 }
 
