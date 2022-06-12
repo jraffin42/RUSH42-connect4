@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_struct.c                                  :+:      :+:    :+:   */
+/*   ft_printf_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:53:30 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:50:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:22:36 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static char	*print_format3(t_strlist *s, va_list *arg, int *ismalloc)
 {
@@ -44,12 +44,12 @@ static char	*print_format2(t_strlist *s, va_list *arg, int *ismalloc)
 	else if (s->type == 'd')
 	{
 		*ismalloc = 1;
-		return (ft_itoa(va_arg(*arg, int)));
+		return (ft_printf_itoa(va_arg(*arg, int)));
 	}
 	else if (s->type == 'i')
 	{
 		*ismalloc = 1;
-		return (ft_itoa(va_arg(*arg, int)));
+		return (ft_printf_itoa(va_arg(*arg, int)));
 	}
 	return (print_format3(s, arg, ismalloc));
 }

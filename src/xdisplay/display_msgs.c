@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:50:15 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 14:58:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:29:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 
 void	display_welcome(void)
 {
-	write(1, "\e[1;33m", 7);
-	write(1, "WELCOME TO CONNECT4 !\nPRESS ENTER TO CONTINUE...", 48);
-	write(1, "\e[0m\n", 5);
+	ft_printf("\e[1;33mWELCOME TO CONNECT4 !\nPRESS ENTER TO CONTINUE...\e[0m\n");
 	free(ft_gnl(0));
 }
 
@@ -29,15 +27,13 @@ void	display_ai_move(int move)
 	static char	msg[30] = "AI played column ";
 
 	msg[29] = move + '0';
-	write(1, "\e[1;32m", 7);
-	write(1, msg, 9);
-	write(1, "\e[0m\n", 5);
+	ft_printf("\e[1;32m");
+	ft_printf("\e[1;32m%s\e[0m\n", msg);
 }
 
 void	display_info(char *message)
 {
-	write(1, message, ft_strlen(message));
-	write(1, "\n", 1);
+	ft_printf("%s\n", message);
 }
 
 void	xdisplay_error(char *s)
@@ -53,31 +49,24 @@ void	xdisplay_error(char *s)
 
 void	display_error(char *error)
 {
-	write(1, "\e[1;31m", 7);
-	write(1, error, ft_strlen(error));
-	write(1, "\e[0m\n", 5);
+	ft_printf("\e[1;31m%s\e[0m\n",error, ft_strlen(error));
 }
 
 void	display_winner(int player)
 {
 	if (player)
 	{
-		write(1, "\e[1;32m", 7);
-		write (1, "The AI won! Sorry...", 20);
+		ft_printf("\e[1;32mThe AI won! Sorry...\e[0m\n");
 	}
 	else
 	{
-		write(1, "\e[1;94m", 7);
-		write (1, "You are the winner! Congratulations!", 36);
+		ft_printf("\e[1;94mYou are the winner! Congratulations!\e[0m\n");
 	}
-	write(1, "\e[0m\n", 5);
 }
 
 void	endgame(void)
 {
-	write(1, "\e[1;33m", 7);
-	write(1, "PRESS ENTER TO EXIT...", 22);
-	write(1, "\e[0m\n", 5);
+	ft_printf("\e[1;33mPRESS ENTER TO EXIT...\e[0m\n");
 	free(ft_gnl(0));
-	write(1, "\x1B[2J\x1B[H", 7);
+	ft_printf("\x1B[2J\x1B[H");
 }

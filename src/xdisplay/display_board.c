@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_board.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:49:10 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/12 00:47:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:32:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 static void	display_line(char c, int count)
 {
 	while (count--)
-		write(1, &c, 1);
-	write(1, "\n", 1);
+		ft_printf("%c", c);
+	ft_printf("\n");
 }
 
 void	display_board(t_board *board)
@@ -27,25 +27,25 @@ void	display_board(t_board *board)
 	int	x;
 	int	y;
 
-	write(1, "\x1B[2J\x1B[H", 7);
+	ft_printf("\x1B[2J\x1B[H");
 	display_line('-', board->width + 2);
 	y = board->height;
 	while (y--)
 	{
-		write(1, "|", 1);
+		ft_printf("|");
 		x = 0;
 		while (x < board->width)
 		{
 			if (board->map[x][y] == RED_CHAR)
-				write(1, "\e[1;91mX", 8);
+				ft_printf("\e[1;91mX");
 			else if (board->map[x][y] == YEL_CHAR)
-				write(1, "\e[1;93m0", 8);
+				ft_printf("\e[1;93m0");
 			else
-				write(1, "\e[0m ", 5);
+				ft_printf("\e[0m ");
 			++x;
 		}
-		write(1, "\e[0m|\n", 6);
+		ft_printf("\e[0m|\n", 6);
 	}
 	display_line('-', board->width + 2);
-	write(1, "\n", 1);
+	ft_printf("\n");
 }

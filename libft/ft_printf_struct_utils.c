@@ -6,11 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:51:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:50:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:09:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 void	init_flags(t_strlist *lst)
 {

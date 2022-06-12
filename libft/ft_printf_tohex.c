@@ -1,45 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_convert.c                                :+:      :+:    :+:   */
+/*   ft_printf_tohex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/26 14:34:27 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:50:46 by fmauguin         ###   ########.fr       */
+/*   Created: 2021/12/26 14:59:31 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/06/12 15:09:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static int	ft_strsize(unsigned int n)
+static size_t	ft_tohex2(unsigned int nb)
 {
-	int	len;
+	size_t				len;
 
 	len = 1;
-	while (n >= 10)
+	while (nb >= 16)
 	{
-		n *= 0.1;
+		nb /= 16;
 		len++;
 	}
 	return (len);
 }
 
-char	*ft_uitoa(unsigned int n)
+char	*ft_tohex(unsigned int nb)
 {
-	int				len;
-	char			*result;
+	char	*hex;
+	char	*result;
+	size_t	len;
 
-	n = (unsigned int)(4294967295 + 1 + n);
-	len = ft_strsize(n);
+	nb = (unsigned int)(4294967295 + 1 + nb);
+	hex = "0123456789abcdef";
+	len = ft_tohex2(nb);
 	result = malloc((len + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
-	result[len] = '\0';
-	while (len > 0)
-	{
-		result[--len] = (n % 10) + '0';
-		n *= 0.1;
+	result[len--] = '\0';
+	while (nb >= 16)
+	{	
+		result[len--] = hex[nb % 16];
+		nb /= 16;
 	}
+	result[len] = hex[nb % 16];
 	return (result);
 }

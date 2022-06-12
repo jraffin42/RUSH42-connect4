@@ -6,11 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 22:24:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:50:47 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:08:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static size_t	ft_tohexl2(unsigned long int nb)
 {

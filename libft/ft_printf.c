@@ -6,11 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:43:36 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 01:50:55 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:08:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 void	*init_flist(const char *s, int len)
 {

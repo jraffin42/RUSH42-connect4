@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:33:36 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 00:22:28 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 15:22:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	*ft_calloc(size_t count, size_t size)
 
 	if (count && size > SIZE_MAX / count)
 		return (NULL);
-
 	mem = malloc(count * size);
 	if (mem)
 		return (ft_memset(mem, 0, count * size));

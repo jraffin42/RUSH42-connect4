@@ -6,7 +6,7 @@
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 00:56:24 by jraffin           #+#    #+#             */
-/*   Updated: 2022/06/11 02:12:53 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 15:23:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,37 @@ typedef struct s_gnlbuf
 	ssize_t	size;
 }	t_gnlbuf;
 
+typedef struct str_list
+{
+	char	*str;
+	int		form;
+	char	type;
+}			t_strlist;
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+int		ok_char(char c);
+int		end_char(char c);
+int		check_f(t_strlist *lst);
+int		ft_printf(const char *format, ...);
+
+void	init_flags(t_strlist *lst);
+void	ft_clear_flst(void *lst);
+
+char	*ft_printf_itoa(int n);
+char	*ft_getaddr(void *ptr);
+char	*ft_str_toupper(char *s);
+char	*ft_uitoa(unsigned int n);
+char	*ft_tohex(unsigned int nb);
+
+size_t	print_format(t_strlist *s, va_list *arg);
+size_t	print_lst(void *data, va_list *arg);
+size_t	ft_lstiter_printf(t_list *lst, va_list *va_lst, \
+		size_t (*f)(void *, va_list *));
 
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
