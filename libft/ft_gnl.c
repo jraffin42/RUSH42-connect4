@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraffin <jraffin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:42:49 by jraffin           #+#    #+#             */
-/*   Updated: 2022/01/24 06:27:10 by jraffin          ###   ########.fr       */
+/*   Updated: 2022/06/12 17:18:05 by jraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,25 @@ static char	*gnl_core(t_gnlbuf *buf, int fd)
 	return (line);
 }
 
+static void	cleanup(t_gnlbuf **buf, int fd)
+{
+	if (fd < GNL_FD_MAXSIZE)
+		buf[fd] = (free(buf[fd]), NULL);
+	else
+	{
+		fd = -1;
+		while (++fd < GNL_FD_MAXSIZE)
+			buf[fd] = (free(buf[fd]), NULL);
+	}
+}
+
 char	*ft_gnl(int fd)
 {
 	static t_gnlbuf	*buf[GNL_FD_MAXSIZE];
 	char			*line;
 
+	if (fd < 0)
+		return (cleanup(buf, fd), NULL);
 	if (fd >= GNL_FD_MAXSIZE)
 		return (NULL);
 	if (!buf[fd])
@@ -72,7 +86,7 @@ char	*ft_gnl(int fd)
 	if (!buf[fd])
 		return (NULL);
 	line = gnl_core(buf[fd], fd);
-	if (!line)
+	if (!line || !buf[fd]->size)
 		buf[fd] = (free(buf[fd]), NULL);
 	return (line);
 }
