@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xanim.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 14:25:07 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/06/12 14:34:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:06:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ int	move_anim(t_c4 **c4)
 
 void	do_move(t_c4 **c4, t_board *board, int player, int move)
 {
-	int	y;
-
-	y = board->height - board->lengths[move];
 	board->map[move][board->lengths[move]++] = board->token[player];
 	--board->left;
 	(*c4)->move = move;
